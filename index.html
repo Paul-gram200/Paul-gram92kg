@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="sw"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARCHYTEC PAUL - Fundi Ramani Njombe & Mbeya | MUST Student Architect</title>
+<meta name="description" content="ARCHYTEC PAUL - Mwanafunzi MUST Mbeya, Fundi Ramani Njombe & Mbeya. Ramani za Kisasa. Piga 0675120043">
+<style>
+body{margin:0;background:#f0f2f5;font-family:Arial,sans-serif}
+.header{background:linear-gradient(135deg,#003366,#0095f6);color:#fff;padding:25px 15px;text-align:center}
+.header img{width:115px;height:115px;border-radius:50%;border:4px solid #fff;object-fit:cover;background:#fff}
+.card,.post,.price-box,.order-box,.map-box,.edu-box{background:#fff;max-width:520px;margin:14px auto;border-radius:16px;padding:18px;box-shadow:0 2px 10px #0002}
+.btn{padding:12px 22px;border-radius:25px;color:#fff;text-decoration:none;margin:5px;display:inline-block;font-weight:bold;border:none;cursor:pointer}
+.blue{background:#0095f6}.green{background:#25D366}.dark{background:#111}
+.post img,.post video{width:100%;border-radius:12px;margin-top:8px;background:#000}
+.price{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee}
+.price b{color:#0095f6}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #ddd;box-sizing:border-box}
+#gallery{text-align:center;color:#666;padding:10px}
+.edu-box{background:linear-gradient(135deg,#fffbe6,#fff);border-left:5px solid #ffcc00}
+</style></head><body>
+
+<div class="header">
+<img src="picha1.jpeg" onerror="this.src='https://via.placeholder.com/110'">
+<h1>ARCHYTEC PAUL</h1>
+<p>🏛️ Architect • Fundi Ramani za Kisasa<br>📍 SASA: Njombe | Nov 2026: Mbeya - MUST<br>✅ Kazi Online Tanzania Nzima</p>
+<a class="btn dark" href="tel:0675120043">📞 Piga Simu</a>
+<a class="btn green" href="https://wa.me/255675120043">💬 WhatsApp</a>
+</div>
+
+<div class="edu-box">
+<h2>🎓 Elimu Yangu</h2>
+<p><b>Mwanafunzi - MUST</b><br>Mbeya University of Science and Technology<br>Mwezi wa 11, 2026 nitaanza Masomo Mbeya<br>📚 Architecture / Ujenzi</p>
+<p style="font-size:13px;background:#003366;color:#fff;padding:8px;border-radius:8px;display:inline-block">👨‍🎓 Trust: Mwanafunzi wa Chuo cha Uhandisi</p>
+</div>
+
+<div class="price-box">
+<h2>💰 Orodha ya Bei</h2>
+<div class="price"><span>Vyumba 3</span><b>250k</b></div>
+<div class="price"><span>Vyumba 4</span><b>350k</b></div>
+<div class="price"><span>Villa / Ghorofa</span><b>500k+</b></div>
+<div class="price"><span>Modification</span><b>100k</b></div>
+</div>
+
+<div class="order-box">
+<h2>📝 Agiza Ramani Sasa</h2>
+<input id="jina" placeholder="Jina lako">
+<select id="aina"><option>Chagua Aina</option><option>Vyumba 3</option><option>Vyumba 4</option><option>Villa</option><option>Ghorofa</option></select>
+<textarea id="maelezo" placeholder="Kiwanja chako ukubwa gani? Unataka vyumba vingapi?"></textarea>
+<button class="btn green" style="width:100%" onclick="tumaWhatsApp()">Tuma WhatsApp</button>
+</div>
+
+<div class="post" style="text-align:center"><b>🔥 Kazi Zangu</b></div>
+<div id="gallery">Inapakia...</div>
+
+<div class="map-box">
+<h2>📍 Nipo Njombe Sasa, Mbeya MUST Nov</h2>
+<iframe src="https://maps.google.com/maps?q=MUST Mbeya University of Science and Technology, Mbeya, Tanzania&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="260" style="border:0;border-radius:12px"></iframe>
+<p style="font-size:13px">Njombe (Sasa) - Mbeya MUST (Nov 2026) - Lakini huduma ni Online Popote Tanzania</p>
+</div>
+
+<script>
+async function loadGallery(){
+  const g=document.getElementById('gallery');
+  try{
+    const res=await fetch('https://api.github.com/repos/Paul-gram200/Paul-gram92kg/contents');
+    const files=await res.json();
+    g.innerHTML='';
+    files.forEach(f=>{
+      const n=f.name.toLowerCase();
+      if(n.match(/\.(mp4|mov|webm)$/)){
+        const d=document.createElement('div');d.className='post';
+        d.innerHTML=`<b>${f.name}</b><video controls playsinline><source src="${f.name}"></video>`;
+        g.appendChild(d);
+      }
+    });
+    files.forEach(f=>{
+      const n=f.name.toLowerCase();
+      if(n.match(/\.(jpg|jpeg|png|webp)$/) && n!=='picha1.jpeg'){
+        const d=document.createElement('div');d.className='post';
+        d.innerHTML=`<b>${f.name}</b><img src="${f.name}" loading="lazy">`;
+        g.appendChild(d);
+      }
+    });
+  }catch(e){g.innerHTML='';}
+}
+loadGallery();
+function tumaWhatsApp(){
+  const j=document.getElementById('jina').value;
+  const a=document.getElementById('aina').value;
+  const m=document.getElementById('maelezo').value;
+  if(!j){alert('Weka jina');return;}
+  const uj=`Habari Archytec Paul (MUST), Mimi ${j}. Nataka ${a}. ${m}`;
+  window.open('https://wa.me/255675120043?text='+encodeURIComponent(uj),'_blank');
+}
+</script>
+</body></html>
